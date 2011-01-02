@@ -1,0 +1,17 @@
+# Managed by Puppet
+
+for profile in ~/.bash/profiles/* ~/.bash_profiles/*; do
+  if [ -f $profile ]; then
+    if [[ "$BASH_PROFILES" = "*$profile*" ]]; then
+      BASH_SOURCED=true
+    else
+      BASH_SOURCED=false
+    fi
+    . $profile && export BASH_PROFILES="${BASH_PROFILES}${profile} "
+  fi
+done
+unset profile BASH_SOURCED
+
+# For non-interactive non-login shells
+# Bash doesn't source any specific files for this type
+BASH_ENV="~/.bash/bash_env"

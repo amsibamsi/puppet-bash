@@ -1,0 +1,22 @@
+$BASH_SOURCED && return 1
+
+export LSCOLORS="ExGxdxdxCxBxBxacacaeae"
+export EDITOR="vim"
+export PAGER="less"
+
+# Change the window title for terminals
+case $TERM in
+  xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+  ;;
+  screen)
+    export PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+  ;;
+esac
+
+# Color prompt
+if [[ $EUID == 0 ]] ; then
+  export PS1="\[\e[1;31m\]\u \[\e[0m\]@ \[\e[1;33m\]\H \[\e[0m\][ \[\e[1;34m\]\w \[\e[0m\]]\n\[\e[1m\]-> \[\e[0m\]"
+else
+  export PS1="\[\e[1;32m\]\u \[\e[0m\]@ \[\e[1;33m\]\H \[\e[0m\][ \[\e[1;34m\]\w \[\e[0m\]]\n\[\e[1m\]-> \[\e[0m\]"
+fi

@@ -1,0 +1,14 @@
+# Managed by Puppet
+#
+# Sourced by login shells, interactive and non-interactive ones
+# Sourced after /etc/profile
+
+BASH_LOGIN=true
+
+if [[ $- = *i* ]]; then
+  BASH_INTERACTIVE=true
+else
+  BASH_INTERACTIVE=false
+fi
+
+. ~/.bash/init

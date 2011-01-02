@@ -1,0 +1,8 @@
+# Managed by Puppet
+
+# Sourced by non-interactive non-login bash shells
+
+BASH_LOGIN=false
+BASH_INTERACTIVE=false
+
+. ~/.bash/init

@@ -1,0 +1,16 @@
+# Managed by Puppet
+
+# When a login shell exits
+
+if [[ $- = *i* ]]; then
+  BASH_INTERACTIVE=true
+else
+  BASH_INTERACTIVE=false
+fi
+
+for profile in ~/.bash/profiles/logout/* ~/.bash_profiles/logout/*; do
+  if [ -f $profile ]; then
+    . $profile
+  fi
+done
+unset profile

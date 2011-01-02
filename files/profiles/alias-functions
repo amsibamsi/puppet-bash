@@ -1,0 +1,51 @@
+$BASH_INTERACTIVE || return 1
+
+function savealias() {
+  echo "!!! This command is aliased for safety reasons." >&2
+  echo "!!! If you are serious use `type -P $1`." >&2
+  return 1
+}
+
+function ask() {
+  echo -n "Enter 'y' to proceed: "
+  read answer
+  [ "$answer" = 'y' ] && return 0
+  return 1
+}
+
+alias view="vim -R"
+alias l="ls -lsA"
+alias ll="ls -lsa"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias less="less -j $[LINES/2]"
+alias s="sudo"
+alias ss="sudo su -"
+alias r="su -"
+alias t="tail -f"
+alias ..="cd .."
+alias ...="cd ../.."
+alias b="cd -"
+alias go="ssh -A"
+alias rs="rsync -avz --delete -e ssh"
+alias rsn="sync -n"
+alias sshagent='mkdir -p `dirname $SSH_AUTH_SOCK` 2> /dev/null; ssh-agent -a $SSH_AUTH_SOCK -t 36000'
+alias sshadd='ssh-add -t 36000'
+alias xkeych="setxkbmap -layout ch"
+alias xkeyus="setxkbmap -layout us -variant altgr-intl"
+
+alias shutdown="savealias shutdown"
+alias halt="savealias halt"
+alias reboot="ask && /sbin/shutdown -r now"
+alias init="savealias init"
+
+sslgenrsa() { openssl genrsa $1; }
+sslgenrsae() { openssl genrsa -aes256 $1; }
+sslreq() { openssl req -new -key $1 -subj "`cat $2`"; }
+sslss() { openssl req -new -key $1 -subj "`cat $2`" -x509 -days $3; }
+sslsign() { openssl x509 -req -CAcreateserial -in $1 -CA $2 -CAkey $3 -days $4; }
+sslrsapub() { openssl rsa -pubout; }
+sslhash() { openssl x509 -hash -noout; }
+
+shopt -s histappend
+shopt -s checkwinsize

@@ -1,0 +1,4 @@
+$BASH_SOURCED && return 1
+
+export PACKAGESITE="ftp://ftp.de.freebsd.org/pub/FreeBSD/ports/amd64/packages-8-stable/Latest/"
+export PORTSEARCH_OUTFIELDS="name,path,info"

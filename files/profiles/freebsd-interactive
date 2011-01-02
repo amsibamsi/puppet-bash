@@ -1,0 +1,14 @@
+$BASH_INTERACTIVE || return 1
+
+# Fix the delete key on syscons
+bind "del":delete-char
+
+alias poweroff="ask && /sbin/shutdown -p now"
+
+alias fasthalt="savealias fasthalt"
+alias fastboot="savealias fastboot"
+alias ls="ls -GI"
+alias ntpupdate="/etc/rc.d/ntpd status && /etc/rc.d/ntpd stop; /etc/rc.d/ntpdate onestart; /etc/rc.d/ntpd start"
+alias x11="tmux new-session -d -s x11 'unset TMUX; startx' && logout"
+
+alias sercon="cu -s 115200 -l ttyU0"

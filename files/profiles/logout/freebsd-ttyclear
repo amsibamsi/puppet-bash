@@ -1,0 +1,6 @@
+$BASH_INTERACTIVE || return 1
+
+if [[ `tty` = *ttyv* ]]; then
+  clear
+  vidcontrol -C
+fi

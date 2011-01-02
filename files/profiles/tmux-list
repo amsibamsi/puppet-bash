@@ -1,0 +1,7 @@
+$BASH_INTERACTIVE || return 1
+$BASH_LOGIN || return 1
+
+if which -s tmux; then
+  echo "Open sessions:"
+  tmux list-sessions 2> /dev/null || true
+fi
